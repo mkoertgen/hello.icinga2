@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  icinga:
+    build:
+      context: ./icinga2
+    volumes: # cf.: https://github.com/jjethwa/icinga2#volume-reference
+      - icinga_conf:/etc/icinga2/
+      - icinga_webconf:/etc/icingaweb2/
+      - mysql_data:/var/lib/mysql
+      - icinga_data:/var/lib/icinga2/
+    environment:
+      ICINGAWEB2_ADMIN_USER: icingaadmin
+      ICINGAWEB2_ADMIN_PASS: icinga
+      ICINGA2_FEATURE_DIRECTOR_USER: icinga2-director
+      ICINGA2_FEATURE_DIRECTOR_PASS: api123
+      DEFAULT_MYSQL_USER: icinga2
+      #DEFAULT_MYSQL_PASS: icinga2
+    ports: ['80:80', '443:443', '5665:5665']
+
+volumes:
+  icinga_conf:
+  icinga_webconf:
+  mysql_data:
+  icinga_data:
