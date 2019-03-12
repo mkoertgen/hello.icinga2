@@ -4,6 +4,10 @@ services:
   icinga:
     build:
       context: ./icinga2
+    #restart: on-failure:5
+    # Set your hostname to the FQDN under which your
+    # sattelites will reach this container
+    hostname: icinga2
     volumes: # cf.: https://github.com/jjethwa/icinga2#volume-reference
       - icinga_conf:/etc/icinga2/
       - icinga_webconf:/etc/icingaweb2/
