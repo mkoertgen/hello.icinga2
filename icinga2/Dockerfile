@@ -1,13 +1,7 @@
 # cf.: https://github.com/jjethwa/icinga2
 FROM jordan/icinga2:latest
 
-# Install gosu, cf.: https://github.com/tianon/gosu/blob/master/INSTALL.md#from-debian
-RUN set -eux; \
-  apt-get update; \
-  apt-get install -y gosu; \
-  rm -rf /var/lib/apt/lists/*; \
-  # verify that the binary works
-  gosu nobody true
+#ADD content/ /
 
 # NOTE: We want to run in Open Caontainer Platform (OCP). By default SCC, containers must not be run as root, cf.:
 # - https://docs.openshift.com/enterprise/3.2/creating_images/guidelines.html#openshift-enterprise-specific-guidelines
@@ -19,8 +13,4 @@ RUN addgroup --system icinga2 &&\
   usermod -aG sudo icinga2 &&\
   echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-#USER icinga2
-ADD ./docker-entrypoint.sh /
-
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
-CMD ["icinga2"]
+USER icinga2

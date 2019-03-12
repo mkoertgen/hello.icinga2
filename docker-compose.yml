@@ -4,34 +4,14 @@ services:
   icinga:
     build:
       context: ./icinga2
-    #restart: on-failure:5
-    # Set your hostname to the FQDN under which your
-    # sattelites will reach this container
-    hostname: icinga2
     volumes: # cf.: https://github.com/jjethwa/icinga2#volume-reference
       - icinga_conf:/etc/icinga2/
       - icinga_webconf:/etc/icingaweb2/
       - mysql_data:/var/lib/mysql
       - icinga_data:/var/lib/icinga2/
     environment:
-      ICINGAWEB2_ADMIN_USER: icingaadmin
-      ICINGAWEB2_ADMIN_PASS: icinga
-      ICINGA2_FEATURE_DIRECTOR_USER: icinga2-director
       ICINGA2_FEATURE_DIRECTOR_PASS: api123
-      #DEFAULT_MYSQL_HOST: mysql
-      DEFAULT_MYSQL_USER: icinga2
-      #DEFAULT_MYSQL_PASS: icinga2
     ports: ['80:80', '443:443', '5665:5665']
-    #depends_on: ['mysql']
-
-  # mysql:
-  #   image: mariadb:10.1
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: icinga2
-  #   volumes:
-  #     - mysql_data:/var/lib/mysql
-  #     # If you have previously used the container's internal DB use:
-  #     #- ./data/icinga/lib/mysql:/var/lib/mysql
 
 volumes:
   icinga_conf:
