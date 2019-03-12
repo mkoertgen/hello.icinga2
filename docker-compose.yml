@@ -18,9 +18,21 @@ services:
       ICINGAWEB2_ADMIN_PASS: icinga
       ICINGA2_FEATURE_DIRECTOR_USER: icinga2-director
       ICINGA2_FEATURE_DIRECTOR_PASS: api123
+      #DEFAULT_MYSQL_HOST: mysql
       DEFAULT_MYSQL_USER: icinga2
       #DEFAULT_MYSQL_PASS: icinga2
     ports: ['80:80', '443:443', '5665:5665']
+    #entrypoint: bash
+    #depends_on: ['mysql']
+
+  # mysql:
+  #   image: mariadb:10.1
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: icinga2
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #     # If you have previously used the container's internal DB use:
+  #     #- ./data/icinga/lib/mysql:/var/lib/mysql
 
 volumes:
   icinga_conf:
