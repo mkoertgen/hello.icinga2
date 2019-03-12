@@ -22,7 +22,6 @@ services:
       DEFAULT_MYSQL_USER: icinga2
       #DEFAULT_MYSQL_PASS: icinga2
     ports: ['80:80', '443:443', '5665:5665']
-    #entrypoint: bash
     #depends_on: ['mysql']
 
   # mysql:
