@@ -1,6 +1,6 @@
 # hello.icinga2
 
-Playing around with Icinga2.
+Playing around with [Icinga2](https://github.com/Icinga/icinga2) on [Open Container Platform (OCP)](https://www.openshift.com/).
 
 ## Usage
 
