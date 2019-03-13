@@ -2,8 +2,8 @@ FROM python:3.7.2 as build
 
 WORKDIR /usr/src/app
 
-COPY plugins/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY plugins/requirements*.txt ./
+RUN pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
 
 COPY plugins/ .
 RUN pylint *.py &&\
